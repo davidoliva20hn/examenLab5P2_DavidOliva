@@ -23,8 +23,8 @@ public class Empleados extends Personas {
     }
 
     public Empleados(String carrera, String puesto, String añostrabajando, String nombre, 
-            String apellido, int contraseña, Date nacimiento, String sexo, String departamento, String identidad) {
-        super(nombre, apellido, contraseña, nacimiento, sexo, departamento, identidad);
+            String apellido, int contraseña, Date nacimiento, String sexo, String departamento) {
+        super(nombre, apellido, contraseña, nacimiento, sexo, departamento);
         this.carrera = carrera;
         this.puesto = puesto;
         this.añostrabajando = añostrabajando;

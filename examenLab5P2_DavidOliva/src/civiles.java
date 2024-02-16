@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /*
  */
@@ -12,6 +13,10 @@ public class civiles extends Personas{
     private ArrayList<Tramites> tramites = new ArrayList();
 
     public civiles() {
+    }
+
+    public civiles(String nombre, String apellido, int contraseña, Date nacimiento, String sexo, String departamento) {
+        super(nombre, apellido, contraseña, nacimiento, sexo, departamento);
     }
 
     public ArrayList<Tramites> getTramites() {

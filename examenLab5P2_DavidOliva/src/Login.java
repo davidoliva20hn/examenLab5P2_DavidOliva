@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -18,8 +19,17 @@ public class Login extends javax.swing.JFrame {
     
     public Login() {
         initComponents();
-        ArrayList<Personas> personas=new ArrayList();
-        personas.add(new Empleados("Economista","Gerente","20","David","Oliva",))
+        ArrayList<Personas> personas = new ArrayList();
+
+        personas.add(new Empleados("Economista", "Gerente", "20", "David",
+                "Oliva", 0000, new Date(), "Masculino", "Francisco Morazán"));
+        personas.add(new Empleados("Abogado", "El que laba los baños", "40", "Alnulfo",
+                "Nunez", 1324, new Date(), "Masculino", "Francisco Morazán"));
+        personas.add(new civiles("Andres", "Oliva", 123456,
+                 new Date(), "Masculino", "Francisco Morazán"));
+        personas.add(new civiles("Jose", "Arias", 1111, new Date(),
+                "Masculino", "Francisco Morazán"));
+
     }
 
     /**

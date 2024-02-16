@@ -21,14 +21,14 @@ public class Personas {
     public Personas() {
     }
 
-    public Personas(String nombre, String apellido, int contraseña, Date nacimiento, String sexo, String departamento, String identidad) {
+    public Personas(String nombre, String apellido, int contraseña, Date nacimiento, String sexo, String departamento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.contraseña = contraseña;
         this.nacimiento = nacimiento;
         this.sexo = sexo;
         this.departamento = departamento;
-        this.identidad = identidad;
+        this.identidad = Indentidad();
     }
 
     public String getNombre() {
