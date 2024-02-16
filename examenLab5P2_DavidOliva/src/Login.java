@@ -1,10 +1,10 @@
 
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.table.DefaultTableModel;
 
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+
  */
 
 /**
@@ -16,19 +16,18 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    
+    ArrayList<Personas> personas = new ArrayList();
     public Login() {
         initComponents();
-        ArrayList<Personas> personas = new ArrayList();
 
         personas.add(new Empleados("Economista", "Gerente", "20", "David",
-                "Oliva", 0000, new Date(), "Masculino", "Francisco Morazán"));
+                "Oliva", 0000, new Date(), "Masculino", "Cortés"));
         personas.add(new Empleados("Abogado", "El que laba los baños", "40", "Alnulfo",
-                "Nunez", 1324, new Date(), "Masculino", "Francisco Morazán"));
+                "Nunez", 1324, new Date(), "Masculino", "Comayagua"));
         personas.add(new civiles("Andres", "Oliva", 123456,
-                 new Date(), "Masculino", "Francisco Morazán"));
+                new Date(), "Masculino", "Francisco Morazán", new Tramites("comer", "Tengo hambre", new Date(), new Personas().Indentidad())));
         personas.add(new civiles("Jose", "Arias", 1111, new Date(),
-                "Masculino", "Francisco Morazán"));
+                "Masculino", "Francisco Morazán", new Tramites("Dormir", "Tengo sueño", new Date(), new Personas().Indentidad())));
 
     }
 
@@ -42,14 +41,23 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         empleado = new javax.swing.JDialog();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        infociviles = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jPanel5 = new javax.swing.JPanel();
         civlies = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        nombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        contraseña = new javax.swing.JTextField();
 
         empleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -57,14 +65,106 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("Informacion de los civiles:");
+
+        infociviles.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre Completo", "No.Indentidad", "Fecha Nacimiento"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(infociviles);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre Tramite", "Descripcion", "Fecha", "N.Identidad"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(124, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("información civiles", jPanel4);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 621, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 532, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Modificasion Civiles", jPanel5);
+
         javax.swing.GroupLayout empleadoLayout = new javax.swing.GroupLayout(empleado.getContentPane());
         empleado.getContentPane().setLayout(empleadoLayout);
         empleadoLayout.setHorizontalGroup(
             empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         empleadoLayout.setVerticalGroup(
             empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, empleadoLayout.createSequentialGroup()
+                .addGap(0, 123, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel3.setBackground(new java.awt.Color(255, 204, 204));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
 
@@ -72,11 +172,11 @@ public class Login extends javax.swing.JFrame {
         civlies.getContentPane().setLayout(civliesLayout);
         civliesLayout.setHorizontalGroup(
             civliesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         civliesLayout.setVerticalGroup(
             civliesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -86,12 +186,6 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Login");
-
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
-            }
-        });
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nombre Completo");
@@ -119,9 +213,9 @@ public class Login extends javax.swing.JFrame {
                         .addGap(58, 58, 58)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1)
+                            .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)))
+                            .addComponent(contraseña)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(196, 196, 196)
                         .addComponent(jButton1)))
@@ -135,11 +229,11 @@ public class Login extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(35, 35, 35))
@@ -160,16 +254,45 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        
+        for (Personas p : personas) {
+            String NombreCompleto = personas.get(personas.indexOf(p)).getNombre() + " " + personas.get(personas.indexOf(p)).getApellido();
+            int Contra = personas.get(personas.indexOf(p)).getContraseña();
+            String id=personas.get(personas.indexOf(p)).getIdentidad();
+            Date fecha=personas.get(personas.indexOf(p)).getNacimiento();
+                                DefaultTableModel civ = (DefaultTableModel) infociviles.getModel();
+                    Object[] k = {NombreCompleto,id,fecha};
+                    civ.addRow(k);
+            String nombretrami = ((civiles) personas.get(personas.indexOf(p))).getTramites().get(personas.indexOf(p))
+                    .getNombre();
+            
+            
+            
+            for (int i = 0; i < ((civiles) personas.get(personas.indexOf(p))).getTramites().size(); i++) {
+                            String descripcion=((civiles) personas.get(personas.indexOf(p))).getTramites().get(i).getDescripción();
+            Date fechaTramite=((civiles) personas.get(personas.indexOf(p))).getTramites().get(i).getFechasolicitud();
+            String idtramite=((civiles) personas.get(personas.indexOf(p))).getTramites().get(i).getIdentidad();
+            DefaultTableModel Tramites = (DefaultTableModel) infociviles.getModel();
+            }
+
+ 
+            if (NombreCompleto.equals(nombre.getText()) && Contra == Integer.parseInt(contraseña.getText())) {
+                if (personas.get(personas.indexOf(p)) instanceof Empleados) {
+                    this.setVisible(false);
+                    empleado.setVisible(true);
+                    empleado.pack();
+                } else if (personas.get(personas.indexOf(p)) instanceof civiles) {
+                    this.setVisible(false);
+                    civlies.setVisible(true);
+                    civlies.pack();
+                }
+            }
+
+        }
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void empleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empleadoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_empleadoMouseClicked
-
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,13 +331,22 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog civlies;
+    private javax.swing.JTextField contraseña;
     private javax.swing.JDialog empleado;
+    private javax.swing.JTable infociviles;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }

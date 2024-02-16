@@ -98,26 +98,26 @@ public class Personas {
         if (departamento.equals("Francisco Morazán")) {
             int m = n.nextInt(1, 28);
             if (m <= 9) {
-                Id = "01" + "0" + m;
+                Id += "01" + "0" + m;
             } else {
-                Id += 01 + m;
+                Id += "01" + m;
             }
         } else if (departamento.equals("Cortés")) {
             int m = n.nextInt(1, 12);
             if (m <= 9) {
-                Id = "02" + "0" + m;
+                Id += "02" + "0" + m;
             } else {
-                Id += 02 + m;
+                Id += "02" + m;
             }
         } else if (departamento.equals("Comayagua")) {
             int m = n.nextInt(1, 21);
             if (m <= 9) {
-                Id = "03" + "0" + m;
+                Id += "03" + "0" + m;
             } else {
-                Id += 03 + m;
+                Id += "03" + m;
             }
         }
-        Id += "-" + nacimiento.getYear() + String.valueOf(n.nextInt(12345, 29999));
+        Id += "-" + nacimiento.getYear() +"-"+ String.valueOf(n.nextInt(10000, 30000));
         return Id;
     }
 
