@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JTextField;
 
 /*
  */
@@ -30,6 +31,10 @@ public class civiles extends Personas{
     @Override
     public String toString() {
         return "civiles{" + "tramites=" + tramites + '}';
+    }
+
+    void setNombre(JTextField nombre) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

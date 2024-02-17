@@ -1,12 +1,12 @@
 
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /*
 
  */
-
 /**
  *
  * @author DAVIDANDRESOLIVAHERN
@@ -17,18 +17,53 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     ArrayList<Personas> personas = new ArrayList();
+
     public Login() {
         initComponents();
+        
         personas.add(new Empleados("Economista", "Gerente", "20", "David",
                 "Oliva", 0000, new Date(), "Masculino", "Cortés"));
+        
         personas.add(new Empleados("Abogado", "El que laba los baños", "40", "Alnulfo",
                 "Nunez", 1324, new Date(), "Masculino", "Comayagua"));
+        
         personas.add(new civiles("Andres", "Oliva", 123456,
                 new Date(), "Masculino", "Francisco Morazán"));
         ((civiles) personas.get(2)).getTramites().add(new Tramites("comer", "Tengo hambre", new Date(), personas.get(2).getIdentidad()));
+        
         personas.add(new civiles("Jose", "Arias", 1111, new Date(),
                 "Masculino", "Francisco Morazán"));
         ((civiles) personas.get(3)).getTramites().add(new Tramites("Sueño", "Tengo Sueño", new Date(), personas.get(3).getIdentidad()));
+        for (Personas p : personas) {
+            String NombreCompleto = personas.get(personas.indexOf(p)).getNombre() + " " + personas.get(personas.indexOf(p)).getApellido();
+
+            if (personas.get(personas.indexOf(p)) instanceof civiles) {
+                String nombre = personas.get(personas.indexOf(p)).getNombre() + " " + personas.get(personas.indexOf(p)).getApellido();
+                String id = personas.get(personas.indexOf(p)).getIdentidad();
+                Date fecha = personas.get(personas.indexOf(p)).getNacimiento();
+                DefaultTableModel civ = (DefaultTableModel) infociviles.getModel();
+                Object[] k = {NombreCompleto, id, fecha};
+                civ.addRow(k);
+                for (int i = 0; i < ((civiles) personas.get(personas.indexOf(p))).getTramites().size(); i++) {
+                    String nombretrami = ((civiles) personas.get(personas.indexOf(p))).getTramites().get(i)
+                            .getNombre();
+                    String descripcion = ((civiles) personas.get(personas.indexOf(p))).getTramites().get(i).getDescripción();
+                    Date fechaTramite = ((civiles) personas.get(personas.indexOf(p))).getTramites().get(i).getFechasolicitud();
+                    String idtramite = ((civiles) personas.get(personas.indexOf(p))).getTramites().get(i).getIdentidad();
+                    DefaultTableModel Tramites = (DefaultTableModel) Tremitesciviles.getModel();
+                    Object[] l = {nombretrami, descripcion, fechaTramite, idtramite};
+                    Tramites.addRow(l);
+                }
+            }
+        }
+                for (Personas p : personas) {
+                        if (personas.get(personas.indexOf(p)) instanceof civiles) {
+                            String nuemroID = ((civiles) personas.get(personas.indexOf(p))).getIdentidad();
+                            DefaultComboBoxModel t = (DefaultComboBoxModel) ID.getModel();
+                            t.addElement(nuemroID );
+                            ID.setModel(t);
+            }
+        }
     }
 
     /**
@@ -49,6 +84,20 @@ public class Login extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Tremitesciviles = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
+        ID = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        Apellido = new javax.swing.JTextField();
+        Contraseña = new javax.swing.JTextField();
+        sexo = new javax.swing.JComboBox<>();
+        departamento = new javax.swing.JComboBox<>();
+        date = new com.toedter.calendar.JCalendar();
+        modificar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         civlies = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -62,6 +111,12 @@ public class Login extends javax.swing.JFrame {
         empleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 empleadoMouseClicked(evt);
+            }
+        });
+
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
             }
         });
 
@@ -113,7 +168,7 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,20 +179,100 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("información civiles", jPanel4);
+
+        sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
+
+        departamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Francisco Morazán", "Cortés", "Comayagua" }));
+
+        date.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+
+        modificar.setText("Modificar");
+        modificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modificarMouseClicked(evt);
+            }
+        });
+
+        jLabel5.setText("Nombre");
+
+        jLabel6.setText("Apellido");
+
+        jLabel7.setText("Contraseña");
+
+        jLabel8.setText("Sexo");
+
+        jLabel9.setText("Departamento");
+
+        jLabel10.setText("Fecha de Nacimiento");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 621, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextField1)
+                        .addComponent(Contraseña)
+                        .addComponent(sexo, 0, 200, Short.MAX_VALUE))
+                    .addComponent(departamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(280, 280, 280)
+                .addComponent(modificar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 532, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(departamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(modificar)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Modificasion Civiles", jPanel5);
@@ -146,13 +281,14 @@ public class Login extends javax.swing.JFrame {
         empleado.getContentPane().setLayout(empleadoLayout);
         empleadoLayout.setHorizontalGroup(
             empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         empleadoLayout.setVerticalGroup(
             empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, empleadoLayout.createSequentialGroup()
-                .addGap(0, 123, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(163, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 204, 204));
@@ -257,24 +393,6 @@ public class Login extends javax.swing.JFrame {
         for (Personas p : personas) {
             String NombreCompleto = personas.get(personas.indexOf(p)).getNombre() + " " + personas.get(personas.indexOf(p)).getApellido();
             int Contra = personas.get(personas.indexOf(p)).getContraseña();
-            String id=personas.get(personas.indexOf(p)).getIdentidad();
-            Date fecha=personas.get(personas.indexOf(p)).getNacimiento();
-                                DefaultTableModel civ = (DefaultTableModel) infociviles.getModel();
-                    Object[] k = {NombreCompleto,id,fecha};
-                    civ.addRow(k);
-              
-            if (personas.get(personas.indexOf(p)) instanceof civiles) {
-                for (int i = 0; i < ((civiles) personas.get(personas.indexOf(p))).getTramites().size(); i++) {
-                    String nombretrami = ((civiles) personas.get(personas.indexOf(p))).getTramites().get(i)
-                    .getNombre();
-                    String descripcion = ((civiles) personas.get(personas.indexOf(p))).getTramites().get(i).getDescripción();
-                    Date fechaTramite = ((civiles) personas.get(personas.indexOf(p))).getTramites().get(i).getFechasolicitud();
-                    String idtramite = ((civiles) personas.get(personas.indexOf(p))).getTramites().get(i).getIdentidad();
-                    DefaultTableModel Tramites = (DefaultTableModel) Tremitesciviles.getModel();
-                    Object [] l={nombretrami,descripcion,fechaTramite,idtramite};
-                    Tramites.addRow(l);
-                }
-            }
 
             if (NombreCompleto.equals(nombre.getText()) && Contra == Integer.parseInt(contraseña.getText())) {
                 if (personas.get(personas.indexOf(p)) instanceof Empleados) {
@@ -294,6 +412,34 @@ public class Login extends javax.swing.JFrame {
     private void empleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empleadoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_empleadoMouseClicked
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void modificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarMouseClicked
+
+        for (Personas p : personas) {
+            if (personas.get(personas.indexOf(p)) instanceof civiles) {
+                String nuemroID = ((civiles) personas.get(personas.indexOf(p))).getIdentidad();
+                if (nuemroID.equals(ID.getSelectedItem().toString())) {
+                    ((civiles) personas.get(personas.indexOf(p))).setNombre(nombre.getText());
+                    ((civiles) personas.get(personas.indexOf(p))).setApellido(Apellido.getText());
+                    ((civiles) personas.get(personas.indexOf(p))).setContraseña(Integer.parseInt(contraseña.getText()));
+                    ((civiles) personas.get(personas.indexOf(p))).setSexo(sexo.getSelectedItem().toString());
+                    ((civiles) personas.get(personas.indexOf(p))).setDepartamento(departamento.getSelectedItem().toString());
+                    ((civiles) personas.get(personas.indexOf(p))).setNacimiento(date.getDate());
+                    infociviles.remove(1);
+                    String nombre = personas.get(personas.indexOf(p)).getNombre() + " " + personas.get(personas.indexOf(p)).getApellido();
+                    String id = personas.get(personas.indexOf(p)).getIdentidad();
+                    Date fecha = personas.get(personas.indexOf(p)).getNacimiento();
+                    DefaultTableModel civ = (DefaultTableModel) infociviles.getModel();
+                    Object[] k = {nombre, id, fecha};
+                    civ.addRow(k);
+                }
+            }
+        }
+    }//GEN-LAST:event_modificarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -331,16 +477,27 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Apellido;
+    private javax.swing.JTextField Contraseña;
+    private javax.swing.JComboBox<String> ID;
     private javax.swing.JTable Tremitesciviles;
     private javax.swing.JDialog civlies;
     private javax.swing.JTextField contraseña;
+    private com.toedter.calendar.JCalendar date;
+    private javax.swing.JComboBox<String> departamento;
     private javax.swing.JDialog empleado;
     private javax.swing.JTable infociviles;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -348,6 +505,9 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton modificar;
     private javax.swing.JTextField nombre;
+    private javax.swing.JComboBox<String> sexo;
     // End of variables declaration//GEN-END:variables
 }
