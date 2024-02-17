@@ -15,9 +15,8 @@ public class civiles extends Personas{
     public civiles() {
     }
 
-    public civiles(String nombre, String apellido, int contraseña, Date nacimiento, String sexo, String departamento,Tramites tramites) {
+    public civiles(String nombre, String apellido, int contraseña, Date nacimiento, String sexo, String departamento) {
         super(nombre, apellido, contraseña, nacimiento, sexo, departamento);
-        this.tramites.add(tramites);
     }
 
     public ArrayList<Tramites> getTramites() {

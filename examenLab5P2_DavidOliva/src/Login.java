@@ -19,16 +19,16 @@ public class Login extends javax.swing.JFrame {
     ArrayList<Personas> personas = new ArrayList();
     public Login() {
         initComponents();
-
         personas.add(new Empleados("Economista", "Gerente", "20", "David",
                 "Oliva", 0000, new Date(), "Masculino", "Cortés"));
         personas.add(new Empleados("Abogado", "El que laba los baños", "40", "Alnulfo",
                 "Nunez", 1324, new Date(), "Masculino", "Comayagua"));
         personas.add(new civiles("Andres", "Oliva", 123456,
-                new Date(), "Masculino", "Francisco Morazán", new Tramites("comer", "Tengo hambre", new Date(), new Personas().Indentidad())));
+                new Date(), "Masculino", "Francisco Morazán"));
+        ((civiles) personas.get(2)).getTramites().add(new Tramites("comer", "Tengo hambre", new Date(), personas.get(2).getIdentidad()));
         personas.add(new civiles("Jose", "Arias", 1111, new Date(),
-                "Masculino", "Francisco Morazán", new Tramites("Dormir", "Tengo sueño", new Date(), new Personas().Indentidad())));
-
+                "Masculino", "Francisco Morazán"));
+        ((civiles) personas.get(3)).getTramites().add(new Tramites("Sueño", "Tengo Sueño", new Date(), personas.get(3).getIdentidad()));
     }
 
     /**
@@ -47,7 +47,7 @@ public class Login extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         infociviles = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tremitesciviles = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         civlies = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
@@ -85,7 +85,7 @@ public class Login extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(infociviles);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tremitesciviles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -101,7 +101,7 @@ public class Login extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Tremitesciviles);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -262,19 +262,20 @@ public class Login extends javax.swing.JFrame {
                                 DefaultTableModel civ = (DefaultTableModel) infociviles.getModel();
                     Object[] k = {NombreCompleto,id,fecha};
                     civ.addRow(k);
-            String nombretrami = ((civiles) personas.get(personas.indexOf(p))).getTramites().get(personas.indexOf(p))
+              
+            if (personas.get(personas.indexOf(p)) instanceof civiles) {
+                for (int i = 0; i < ((civiles) personas.get(personas.indexOf(p))).getTramites().size(); i++) {
+                    String nombretrami = ((civiles) personas.get(personas.indexOf(p))).getTramites().get(i)
                     .getNombre();
-            
-            
-            
-            for (int i = 0; i < ((civiles) personas.get(personas.indexOf(p))).getTramites().size(); i++) {
-                            String descripcion=((civiles) personas.get(personas.indexOf(p))).getTramites().get(i).getDescripción();
-            Date fechaTramite=((civiles) personas.get(personas.indexOf(p))).getTramites().get(i).getFechasolicitud();
-            String idtramite=((civiles) personas.get(personas.indexOf(p))).getTramites().get(i).getIdentidad();
-            DefaultTableModel Tramites = (DefaultTableModel) infociviles.getModel();
+                    String descripcion = ((civiles) personas.get(personas.indexOf(p))).getTramites().get(i).getDescripción();
+                    Date fechaTramite = ((civiles) personas.get(personas.indexOf(p))).getTramites().get(i).getFechasolicitud();
+                    String idtramite = ((civiles) personas.get(personas.indexOf(p))).getTramites().get(i).getIdentidad();
+                    DefaultTableModel Tramites = (DefaultTableModel) Tremitesciviles.getModel();
+                    Object [] l={nombretrami,descripcion,fechaTramite,idtramite};
+                    Tramites.addRow(l);
+                }
             }
 
- 
             if (NombreCompleto.equals(nombre.getText()) && Contra == Integer.parseInt(contraseña.getText())) {
                 if (personas.get(personas.indexOf(p)) instanceof Empleados) {
                     this.setVisible(false);
@@ -330,6 +331,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Tremitesciviles;
     private javax.swing.JDialog civlies;
     private javax.swing.JTextField contraseña;
     private javax.swing.JDialog empleado;
@@ -346,7 +348,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }
