@@ -164,7 +164,7 @@
                           <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTextField1" max="32767" attributes="0"/>
+                                  <Component id="nomcivli" max="32767" attributes="0"/>
                                   <Component id="Contraseña" alignment="0" max="32767" attributes="0"/>
                                   <Component id="sexo" pref="200" max="32767" attributes="0"/>
                               </Group>
@@ -203,7 +203,7 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="nomcivli" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Apellido" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -246,7 +246,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField1">
+                <Component class="javax.swing.JTextField" name="nomcivli">
                 </Component>
                 <Component class="javax.swing.JTextField" name="Apellido">
                 </Component>
@@ -670,9 +670,9 @@
                           <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <Component id="nombre" pref="362" max="32767" attributes="0"/>
+                              <Component id="nombrecompleto" pref="362" max="32767" attributes="0"/>
                               <Component id="jLabel3" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
-                              <Component id="contraseña" alignment="0" max="32767" attributes="0"/>
+                              <Component id="contraseñalogi" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -692,11 +692,11 @@
                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="nombre" min="-2" max="-2" attributes="0"/>
+                  <Component id="nombrecompleto" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="contraseña" min="-2" max="-2" attributes="0"/>
+                  <Component id="contraseñalogi" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="50" max="32767" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
@@ -716,7 +716,7 @@
             <Property name="text" type="java.lang.String" value="Login"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="nombre">
+        <Component class="javax.swing.JTextField" name="nombrecompleto">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -742,7 +742,7 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="contrase&#xf1;a">
+        <Component class="javax.swing.JTextField" name="contrase&#xf1;alogi">
         </Component>
       </SubComponents>
     </Container>

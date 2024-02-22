@@ -86,7 +86,7 @@ public class Login extends javax.swing.JFrame {
         Tremitesciviles = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         ID = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        nomcivli = new javax.swing.JTextField();
         Apellido = new javax.swing.JTextField();
         Contraseña = new javax.swing.JTextField();
         sexo = new javax.swing.JComboBox<>();
@@ -124,11 +124,11 @@ public class Login extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        nombre = new javax.swing.JTextField();
+        nombrecompleto = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        contraseña = new javax.swing.JTextField();
+        contraseñalogi = new javax.swing.JTextField();
 
         empleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -239,7 +239,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField1)
+                        .addComponent(nomcivli)
                         .addComponent(Contraseña)
                         .addComponent(sexo, 0, 200, Short.MAX_VALUE))
                     .addComponent(departamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -271,7 +271,7 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomcivli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -578,9 +578,9 @@ public class Login extends javax.swing.JFrame {
                         .addGap(58, 58, 58)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2)
-                            .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+                            .addComponent(nombrecompleto, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(contraseña)))
+                            .addComponent(contraseñalogi)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(196, 196, 196)
                         .addComponent(jButton1)))
@@ -594,11 +594,11 @@ public class Login extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nombrecompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(contraseñalogi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(35, 35, 35))
@@ -623,17 +623,18 @@ public class Login extends javax.swing.JFrame {
             String NombreCompleto = personas.get(personas.indexOf(p)).getNombre() + " " + personas.get(personas.indexOf(p)).getApellido();
             int Contra = personas.get(personas.indexOf(p)).getContraseña();
             
-            if (NombreCompleto.equals(nombre.getText()) && Contra == Integer.parseInt(contraseña.getText())) {
+            if (NombreCompleto.equals(nombrecompleto.getText()) && Contra == Integer.parseInt(contraseñalogi.getText())) {
                 if (personas.get(personas.indexOf(p)) instanceof Empleados) {
                     this.setVisible(false);
                     empleado.setVisible(true);
                     empleado.pack();
-                            jLabel19.setText(nombre.getText());
+                            jLabel19.setText(nombrecompleto.getText());
                 } else if (personas.get(personas.indexOf(p)) instanceof civiles) {
                     this.setVisible(false);
                     civlies.setVisible(true);
+                    System.out.println("");
                     civlies.pack();
-                            jLabel16.setText(nombre.getText());
+                            jLabel16.setText(nombrecompleto.getText());
                     String nombre1 = personas.get(personas.indexOf(p)).getNombre() + " " + personas.get(personas.indexOf(p)).getApellido();
                     String id = personas.get(personas.indexOf(p)).getIdentidad();
                     Date fecha = personas.get(personas.indexOf(p)).getNacimiento();
@@ -642,7 +643,7 @@ public class Login extends javax.swing.JFrame {
                     personal.addRow(k);
                     
                     for (int i = 0; i < ((civiles) personas.get(personas.indexOf(p))).getTramites().size(); i++) {
-                        if (NombreCompleto.equals(nombre.getText()) && Contra == Integer.parseInt(contraseña.getText())) {
+                        if (NombreCompleto.equals(nombrecompleto.getText()) && Contra == Integer.parseInt(contraseñalogi.getText())) {
                             String nombretrami = ((civiles) personas.get(personas.indexOf(p))).getTramites().get(i)
                                     .getNombre();
                             String descripcion = ((civiles) personas.get(personas.indexOf(p))).getTramites().get(i).getDescripción();
@@ -673,18 +674,18 @@ public class Login extends javax.swing.JFrame {
             if (personas.get(personas.indexOf(p)) instanceof civiles) {
                 String nuemroID = ((civiles) personas.get(personas.indexOf(p))).getIdentidad();
                 if (nuemroID.equals(ID.getSelectedItem().toString())) {
-                    ((civiles) personas.get(personas.indexOf(p))).setNombre(nombre.getText());
+                    ((civiles) personas.get(personas.indexOf(p))).setNombre(nomcivli.getText());
                     ((civiles) personas.get(personas.indexOf(p))).setApellido(Apellido.getText());
-                    ((civiles) personas.get(personas.indexOf(p))).setContraseña(Integer.parseInt(contraseña.getText()));
+                    ((civiles) personas.get(personas.indexOf(p))).setContraseña(Integer.parseInt(contraseñalogi.getText()));
                     ((civiles) personas.get(personas.indexOf(p))).setSexo(sexo.getSelectedItem().toString());
                     ((civiles) personas.get(personas.indexOf(p))).setDepartamento(departamento.getSelectedItem().toString());
                     ((civiles) personas.get(personas.indexOf(p))).setNacimiento(date.getDate());
-                    ;
-                    String nombre = personas.get(personas.indexOf(p)).getNombre() + " " + personas.get(personas.indexOf(p)).getApellido();
+                    
+                    String nombre1 = personas.get(personas.indexOf(p)).getNombre() + " " + personas.get(personas.indexOf(p)).getApellido();
                     String id = personas.get(personas.indexOf(p)).getIdentidad();
                     Date fecha = personas.get(personas.indexOf(p)).getNacimiento();
                     DefaultTableModel civ = (DefaultTableModel) infociviles.getModel();                    
-                    Object[] k = {nombre, id, fecha};
+                    Object[] k = {nombre1, id, fecha};
                     civ.addRow(k);
                 }
             }
@@ -699,10 +700,10 @@ public class Login extends javax.swing.JFrame {
         for (Personas p : personas) {
             String NombreCompleto = personas.get(personas.indexOf(p)).getNombre() + " " + personas.get(personas.indexOf(p)).getApellido();
             int Contra = personas.get(personas.indexOf(p)).getContraseña();
-            if (NombreCompleto.equals(nombre.getText()) && Contra == Integer.parseInt(contraseña.getText())) {
+            if (NombreCompleto.equals(nombrecompleto.getText()) && Contra == Integer.parseInt(contraseñalogi.getText())) {
                 if (personas.get(personas.indexOf(p)) instanceof civiles) {
                     for (int i = 0; i < ((civiles) personas.get(personas.indexOf(p))).getTramites().size(); i++) {
-                        if (NombreCompleto.equals(nombre.getText()) && Contra == Integer.parseInt(contraseña.getText())) {
+                        if (NombreCompleto.equals(nombrecompleto.getText()) && Contra == Integer.parseInt(contraseñalogi.getText())) {
                             ((civiles) personas.get(personas.indexOf(p))).getTramites().get(i).setNombre(nom.getText());
                             ((civiles) personas.get(personas.indexOf(p))).getTramites().get(i).setDescripción(des.getText());
                             String nombretrami = ((civiles) personas.get(personas.indexOf(p))).getTramites().get(i)
@@ -790,7 +791,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTable Tremitesciviles;
     private javax.swing.JTable Tremitespersonal;
     private javax.swing.JDialog civlies;
-    private javax.swing.JTextField contraseña;
+    private javax.swing.JTextField contraseñalogi;
     private com.toedter.calendar.JCalendar date;
     private javax.swing.JComboBox<String> departamento;
     private javax.swing.JTextArea des;
@@ -832,10 +833,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton modificar;
     private javax.swing.JTextField nom;
-    private javax.swing.JTextField nombre;
+    private javax.swing.JTextField nombrecompleto;
+    private javax.swing.JTextField nomcivli;
     private javax.swing.JComboBox<String> sexo;
     // End of variables declaration//GEN-END:variables
 }
